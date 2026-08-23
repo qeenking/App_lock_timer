@@ -7,10 +7,9 @@
     },
     "ghcr.io/devcontainers/features/java:1": {
       "version": "17"
-    },
-    "ghcr.io/rocker-org/devcontainer-features/android-sdk:1": {}
+    }
   },
-  "postCreateCommand": "npm install -g @react-native-community/cli && echo 'sdk.dir=/usr/lib/android-sdk' > android/local.properties || true",
+  "postCreateCommand": "npm install -g @react-native-community/cli",
   "customizations": {
     "vscode": {
       "extensions": [
