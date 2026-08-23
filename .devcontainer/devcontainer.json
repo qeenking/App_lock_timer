@@ -1,0 +1,28 @@
+{
+  "name": "RN Android AppLockTimer",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17"
+    },
+    "ghcr.io/rocker-org/devcontainer-features/android-sdk:1": {}
+  },
+  "postCreateCommand": "npm install -g @react-native-community/cli && echo 'sdk.dir=/usr/lib/android-sdk' > android/local.properties || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "msjsdiag.vscode-react-native",
+        "redhat.java",
+        "vscjava.vscode-gradle"
+      ]
+    }
+  },
+  "forwardPorts": [8081],
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb"
+  }
+}
