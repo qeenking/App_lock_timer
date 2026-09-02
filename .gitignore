@@ -73,3 +73,7 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# 작업 중 생성된 백업 파일
+*.bak
+*.bak[0-9]*
