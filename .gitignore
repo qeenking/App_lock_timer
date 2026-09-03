@@ -77,3 +77,7 @@ yarn-error.log
 # 작업 중 생성된 백업 파일
 *.bak
 *.bak[0-9]*
+
+# 릴리즈 서명 정보 — 절대 커밋하지 않음
+android/keystore.properties
+android/app/release.keystore

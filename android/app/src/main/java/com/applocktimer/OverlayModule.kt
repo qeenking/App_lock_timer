@@ -71,6 +71,27 @@ class OverlayModule(reactContext: ReactApplicationContext) :
         reactApplicationContext.startActivity(intent)
     }
 
+    // 실제 build.gradle의 versionName/versionCode를 그대로 읽어와, 버전을 올릴 때마다
+    // JS 쪽 화면(AppInfoScreen)을 따로 손보지 않아도 항상 정확한 값이 표시되게 한다.
+    @ReactMethod
+    fun getAppVersion(promise: Promise) {
+        try {
+            val pInfo = reactApplicationContext.packageManager.getPackageInfo(reactApplicationContext.packageName, 0)
+            val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                pInfo.longVersionCode.toInt()
+            } else {
+                @Suppress("DEPRECATION")
+                pInfo.versionCode
+            }
+            val map = Arguments.createMap()
+            map.putString("versionName", pInfo.versionName ?: "")
+            map.putInt("versionCode", versionCode)
+            promise.resolve(map)
+        } catch (e: Exception) {
+            promise.reject("VERSION_ERROR", e)
+        }
+    }
+
     private fun startServiceCompat(intent: Intent) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             reactApplicationContext.startForegroundService(intent)

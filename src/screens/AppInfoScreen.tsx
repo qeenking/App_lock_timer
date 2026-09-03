@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -9,6 +9,7 @@ import {
   ImageBackground,
   SafeAreaView,
   Linking,
+  NativeModules,
 } from 'react-native';
 
 const PURPLE = '#6E62E5';
@@ -16,8 +17,6 @@ const TEXT_MAIN = '#2B2740';
 const TEXT_SUB = '#8B87A6';
 
 const APP_NAME = 'AppLockTimer';
-const APP_VERSION = '1.0.0';
-const APP_BUILD = '1';
 const SUPPORT_EMAIL = 'qeenking@daum.net';
 
 interface Props {
@@ -29,6 +28,18 @@ type Row = { icon: any; title: string; desc: string; onPress: () => void };
 
 export default function AppInfoScreen({ navigation, onBack }: Props) {
   const handleBack = onBack ?? (() => navigation?.goBack());
+
+  const [versionName, setVersionName] = useState('');
+  const [versionCode, setVersionCode] = useState<number | null>(null);
+
+  useEffect(() => {
+    NativeModules.OverlayModule?.getAppVersion?.()
+      .then((v: { versionName: string; versionCode: number }) => {
+        setVersionName(v.versionName);
+        setVersionCode(v.versionCode);
+      })
+      .catch(() => {});
+  }, []);
 
   const openContactEmail = () => {
     const subject = encodeURIComponent(`${APP_NAME} 문의`);
@@ -69,7 +80,9 @@ export default function AppInfoScreen({ navigation, onBack }: Props) {
               <Image source={require('../assets/app_icon_display.png')} style={styles.appIconImg} resizeMode="cover" />
             </View>
             <Text style={styles.appName}>{APP_NAME}</Text>
-            <Text style={styles.appVersion}>버전 {APP_VERSION}  |  빌드 {APP_BUILD}</Text>
+            <Text style={styles.appVersion}>
+              {versionName ? `버전 ${versionName}  |  빌드 ${versionCode}` : '버전 확인 중...'}
+            </Text>
           </View>
 
           {/* ── 정책 링크 ── */}

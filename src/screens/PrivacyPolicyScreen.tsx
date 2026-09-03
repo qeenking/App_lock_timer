@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, SafeAreaView, Linking } from 'react-native';
+
+const PRIVACY_URL = 'https://qeenking.github.io/App_lock_timer/';
 
 const TEXT_MAIN = '#2B2740';
 const TEXT_SUB = '#6B6885';
@@ -60,6 +62,14 @@ export default function PrivacyPolicyScreen({ navigation, onBack }: Props) {
             </TouchableOpacity>
             <Text style={styles.title}>개인정보처리방침</Text>
             <Text style={styles.subtitle}>시행일: 2026년 9월 1일</Text>
+            <TouchableOpacity
+              style={styles.webLinkBtn}
+              onPress={() => Linking.openURL(PRIVACY_URL).catch(() => {})}
+              activeOpacity={0.7}
+            >
+              <Text style={styles.webLinkText}>웹에서 보기</Text>
+              <Text style={styles.webLinkArrow}>↗</Text>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.card}>
@@ -87,6 +97,12 @@ const styles = StyleSheet.create({
   backArrow: { fontSize: 24, color: TEXT_MAIN, marginBottom: 12 },
   title: { fontSize: 22, fontWeight: '800', color: TEXT_MAIN },
   subtitle: { fontSize: 13, color: TEXT_SUB, marginTop: 4 },
+  webLinkBtn: {
+    flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start',
+    backgroundColor: '#EDEBFC', borderRadius: 20, paddingVertical: 8, paddingHorizontal: 14, marginTop: 12,
+  },
+  webLinkText: { fontSize: 13, color: PURPLE, fontWeight: '700' },
+  webLinkArrow: { fontSize: 13, color: PURPLE, fontWeight: '700', marginLeft: 4 },
   card: {
     backgroundColor: '#FFFFFF', borderRadius: 24, padding: 20, marginTop: 16,
     shadowColor: '#6E62E5', shadowOpacity: 0.06, shadowRadius: 12, shadowOffset: { width: 0, height: 4 }, elevation: 2,
