@@ -42,6 +42,7 @@ import {
   getLimitedApps,
   hasPassword,
 } from '../native/NativeModules';
+import { CHAR_SIZE, HEADER_TEXT_MAX_W, scaleFont } from '../constants/responsive';
 
 type Step = 'checking' | 'ready' | 'error';
 
@@ -432,12 +433,12 @@ const styles = StyleSheet.create({
   scrollContentStyle: { paddingBottom: 90 },
   center: { flex: 1, backgroundColor: '#F1EFFF', alignItems: 'center', justifyContent: 'center', padding: 24 },
   header: { paddingHorizontal: 20, position: 'relative', zIndex: 10 },
-  headerTitle: { color: '#fff', fontSize: 24, fontWeight: '800', maxWidth: '65%' },
+  headerTitle: { color: '#fff', fontSize: scaleFont(24), fontWeight: '800', maxWidth: HEADER_TEXT_MAX_W },
   headerDino: {
     position: 'absolute',
     right: 4,
-    width: 130,
-    height: 130,
+    width: CHAR_SIZE,
+    height: CHAR_SIZE,
     zIndex: 10,
     elevation: 10,
   },

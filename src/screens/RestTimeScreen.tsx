@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 import { getInstalledApps, InstalledApp } from '../native/NativeModules';
 import { DayKey } from '../utils/daySchedule';
+import { CHAR_SIZE, HEADER_TEXT_MAX_W, MAX_FONT_SCALE, scaleFont, scaleSize } from '../constants/responsive';
 import {
   RestTimeConfig,
   RestApplyMode,
@@ -247,8 +248,8 @@ export default function RestTimeScreen({ navigation, onBack }: Props) {
             <TouchableOpacity onPress={handleBack} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Text style={styles.backArrow}>←</Text>
             </TouchableOpacity>
-            <Text style={styles.title}>휴식 시간 설정</Text>
-            <Text style={styles.subtitle}>앱 사용을 잠시 쉬는 시간을 설정해요</Text>
+            <Text style={styles.title} maxFontSizeMultiplier={MAX_FONT_SCALE} numberOfLines={2}>휴식 시간 설정</Text>
+            <Text style={styles.subtitle} maxFontSizeMultiplier={MAX_FONT_SCALE} numberOfLines={2}>앱 사용을 잠시 쉬는 시간을 설정해요</Text>
             <Image source={require('../assets/character_rest.png')} style={styles.character} resizeMode="contain" />
           </View>
 
@@ -593,9 +594,9 @@ const styles = StyleSheet.create({
 
   header: { paddingTop: 8, paddingBottom: 8, position: 'relative' },
   backArrow: { fontSize: 24, color: TEXT_MAIN, marginBottom: 12 },
-  title: { fontSize: 26, fontWeight: '800', color: TEXT_MAIN },
-  subtitle: { fontSize: 14, color: TEXT_SUB, marginTop: 4, maxWidth: '65%' },
-  character: { position: 'absolute', right: 4, top: 8, width: 130, height: 130, zIndex: 10, elevation: 10 },
+  title: { fontSize: scaleFont(26), fontWeight: '800', color: TEXT_MAIN, maxWidth: HEADER_TEXT_MAX_W },
+  subtitle: { fontSize: scaleFont(14), color: TEXT_SUB, marginTop: 4, maxWidth: HEADER_TEXT_MAX_W },
+  character: { position: 'absolute', right: 4, top: 8, width: CHAR_SIZE, height: CHAR_SIZE, zIndex: 10, elevation: 10 },
 
   card: {
     backgroundColor: '#FFFFFF',
@@ -620,7 +621,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   appIconWrap: {
-    width: 32, height: 32, borderRadius: 10, backgroundColor: PURPLE_LIGHT,
+    width: scaleSize(40), height: scaleSize(40), borderRadius: 12, backgroundColor: PURPLE_LIGHT,
     alignItems: 'center', justifyContent: 'center', marginRight: 10,
   },
   appIconGrid: { width: 14, height: 14, flexDirection: 'row', flexWrap: 'wrap', gap: 2 },
@@ -689,23 +690,24 @@ const styles = StyleSheet.create({
   },
   infoConfirmText: { color: '#fff', fontWeight: '800', fontSize: 15 },
 
+  everydayBtn: { flexDirection: 'row', alignItems: 'center' },
   everydayText: { fontSize: 13, color: TEXT_SUB, fontWeight: '600' },
   everydayChevron: { fontSize: 14, color: TEXT_SUB, marginLeft: 2 },
   daysRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 8 },
   dayCircle: {
-    width: 40, height: 40, borderRadius: 20, borderWidth: 1.5, borderColor: '#E7E4F5',
+    width: scaleSize(40), height: scaleSize(40), borderRadius: scaleSize(20), borderWidth: 1.5, borderColor: '#E7E4F5',
     alignItems: 'center', justifyContent: 'center',
   },
   dayCircleActive: { borderColor: PURPLE, backgroundColor: PURPLE_LIGHT },
-  dayCircleText: { fontSize: 14, fontWeight: '700', color: TEXT_SUB },
+  dayCircleText: { fontSize: scaleFont(14), fontWeight: '700', color: TEXT_SUB },
   dayCircleTextActive: { color: PURPLE },
 
   timeRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 10 },
   timeIconWrap: {
-    width: 32, height: 32, borderRadius: 10, backgroundColor: PURPLE_LIGHT,
+    width: scaleSize(40), height: scaleSize(40), borderRadius: 12, backgroundColor: PURPLE_LIGHT,
     alignItems: 'center', justifyContent: 'center', marginRight: 12,
   },
-  timeIconImg: { width: 18, height: 18 },
+  timeIconImg: { width: scaleSize(30), height: scaleSize(30) },
   timeLabel: { flex: 1, fontSize: 15, fontWeight: '600', color: TEXT_MAIN },
   timeValueBox: {
     flexDirection: 'row', alignItems: 'center', borderWidth: 1, borderColor: '#E7E4F5',

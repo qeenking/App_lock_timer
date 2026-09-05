@@ -81,3 +81,4 @@ yarn-error.log
 # 릴리즈 서명 정보 — 절대 커밋하지 않음
 android/keystore.properties
 android/app/release.keystore
+*.bak

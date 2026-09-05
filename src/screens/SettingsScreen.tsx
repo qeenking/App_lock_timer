@@ -16,6 +16,7 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PasswordSetupModal from '../components/PasswordSetupModal';
 import PasswordVerifyModal from '../components/PasswordVerifyModal';
+import { CHAR_SIZE, HEADER_TEXT_MAX_W, scaleFont } from '../constants/responsive';
 
 const PURPLE_DARK = '#5B4FCF';
 const CARD_BG = '#FFFFFF';
@@ -161,13 +162,13 @@ const styles = StyleSheet.create({
   scroll: { flex: 1 },
   scrollContent: { paddingBottom: 90 },
   headerRow: { paddingHorizontal: 20, paddingRight: 140, position: 'relative', zIndex: 10 },
-  headerTitle: { color: '#fff', fontSize: 26, fontWeight: '800' },
-  headerSubtitle: { color: '#EDE9FF', fontSize: 13, marginTop: 8, lineHeight: 19 },
+  headerTitle: { color: '#fff', fontSize: scaleFont(26), fontWeight: '800', maxWidth: HEADER_TEXT_MAX_W },
+  headerSubtitle: { color: '#EDE9FF', fontSize: scaleFont(13), marginTop: 8, lineHeight: 19, maxWidth: HEADER_TEXT_MAX_W },
   headerGear: {
     position: 'absolute',
     right: 4,
-    width: 130,
-    height: 130,
+    width: CHAR_SIZE,
+    height: CHAR_SIZE,
     zIndex: 10,
     elevation: 10,
   },

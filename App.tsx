@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { applyGlobalTextScale } from './src/utils/textScale';
 import AppListScreen from './src/screens/AppListScreen';
 import UsageStatsScreen from './src/screens/UsageStatsScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
@@ -16,6 +17,8 @@ import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
 import TermsScreen from './src/screens/TermsScreen';
 import OpenSourceLicensesScreen from './src/screens/OpenSourceLicensesScreen';
 import PermissionSetupScreen from './src/screens/PermissionSetupScreen';
+
+applyGlobalTextScale();
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

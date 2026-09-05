@@ -9,6 +9,7 @@ import {
   ImageBackground,
   SafeAreaView,
 } from 'react-native';
+import { CHAR_SIZE, HEADER_TEXT_MAX_W, scaleFont, scaleSize } from '../constants/responsive';
 
 const PURPLE = '#6E62E5';
 const PURPLE_LIGHT = '#EDEBFC';
@@ -180,9 +181,9 @@ const styles = StyleSheet.create({
 
   header: { paddingTop: 8, paddingBottom: 8, position: 'relative' },
   backArrow: { fontSize: 24, color: TEXT_MAIN, marginBottom: 12 },
-  title: { fontSize: 26, fontWeight: '800', color: TEXT_MAIN },
-  subtitle: { fontSize: 14, color: TEXT_SUB, marginTop: 4, maxWidth: '65%' },
-  character: { position: 'absolute', right: 4, top: 8, width: 130, height: 130, zIndex: 10, elevation: 10 },
+  title: { fontSize: scaleFont(26), fontWeight: '800', color: TEXT_MAIN, maxWidth: HEADER_TEXT_MAX_W },
+  subtitle: { fontSize: scaleFont(14), color: TEXT_SUB, marginTop: 4, maxWidth: HEADER_TEXT_MAX_W },
+  character: { position: 'absolute', right: 4, top: 28, width: CHAR_SIZE, height: CHAR_SIZE, zIndex: 10, elevation: 10 },
 
   card: {
     backgroundColor: '#FFFFFF',
